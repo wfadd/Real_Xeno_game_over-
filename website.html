@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id-ID">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Situs pendaftaran Atlet Player baru - Registrasi Member</title>
+
+    <!-- Meta Tags -->
+    <meta name="description" content="keren kan">
+    <meta property="og:title" content="RXgo squad - Registrasi">
+    <meta property="og:image" content="RXGO.png">
+
+    <!-- CSS External -->
+    <link rel="stylesheet" href="https://awscdn.detik.net.id/news2/css/style.css?v=202605061587">
+    
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background: #f4f4f4; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        header { border-bottom: 2px solid #00539c; margin-bottom: 20px; padding-bottom: 10px; }
+        h1 { color: #00539c; }
+        #billboard { background: #eee; text-align: center; margin: 10px 0; border: 1px dashed #ccc; border-radius: 4px; }
+        
+        /* Style Tombol Registrasi */
+        #btnRegistrasi { 
+            background: #00539c; 
+            color: white; 
+            border: none; 
+            padding: 12px 25px; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            font-size: 16px;
+        }
+        #btnRegistrasi:hover { background: #003d73; }
+
+        /* Style Formulir */
+        #formRegistrasi { 
+            display: none; 
+            margin-top: 20px; 
+            padding: 20px; 
+            border: 1px solid #ddd; 
+            background: #fafafa; 
+            border-radius: 8px; 
+        }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-group input { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        .btn-submit { background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
+
+        /* --- SECTION ABOUT ME ADDITION --- */
+        .about-section {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .about-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #ddd;
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+        .about-text h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .about-text p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        /* --------------------------------- */
+    </style>
+
+    <script src="https://awscdn.detik.net.id/assets/js/jquery.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <div id="billboard">
+            <p style="padding: 20px;">[Area Iklan Billboard 970x250]</p>
+        </div>
+
+        <header>
+            <h1>Real Xeno Game Over (RXgo) </h1>
+            <p>Squad MLBB no.1 di indonesia</p>
+        </header>
+
+        <article class="Slogan kami">
+            <h2>"Get pro Get Champion</h2>
+            <p>Bergabunglah menjadi member kami untuk menjadi proplayer MLBB terkenal.</p>
+            
+            <button id="btnRegistrasi">Daftar Sekarang</button>
+
+            <div id="formRegistrasi">
+                <h3>Formulir Registrasi Member</h3>
+                <form id="regForm">
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" id="nama" placeholder="Masukkan nama Anda" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="email" placeholder="contoh@email.com" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Kirim Pendaftaran</button>
+                    <button type="button" id="btnBatal" style="background:none; border:none; color:red; cursor:pointer; margin-left:10px;">Batal</button>
+                </form>
+            </div>
+        </article>
+
+        <!-- ADDED: About Me Section -->
+        <section class="about-section">
+            <div class="about-content">
+                <img src="RXGO.png" alt="" class="about-image">
+                <div class="about-text">
+                    <h3>Tentang Penulis</h3>
+                    <p>Halo! kami adalah tim RXGO saya Muhammad ALFATH Arfa pengembang dari tim besar ini saya harap anda dapat menjadi proplayer hebat yang kami butuhkan <strong>"GET PRO GET CHAMPION"</strong> .</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $("#btnRegistrasi").click(function() {
+                $(this).hide();
+                $("#formRegistrasi").fadeIn();
+            });
+
+            $("#btnBatal").click(function() {
+                $("#formRegistrasi").hide();
+                $("#btnRegistrasi").show();
+            });
+
+            $("#regForm").submit(function(e) {
+                e.preventDefault();
+                const nama = $("#nama").val();
+                alert("Terima kasih " + nama + "! Pendaftaran Anda berhasil dikirim.");
+                
+                $("#regForm")[0].reset();
+                $("#formRegistrasi").hide();
+                $("#btnRegistrasi").show();
+                
+                // Pastikan dataLayer didefinisikan jika ingin tracking
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event': 'formSubmissionSuccess',
+                    'formName': 'Registrasi Member'
+                });
+            });
+
+            var widthBB = 970;
+            $("#billboard").css({ "width": "100%", "max-width": widthBB + "px" });
+        });
+    </script>
+
+</body>
+</html>
